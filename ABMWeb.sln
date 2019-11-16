@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMWebMVC", "ABMWebMVC\ABMWebMVC.csproj", "{224A5CD1-BBA5-4D9E-B751-6E8F1CB1491C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMWebForms", "ABMWebForms\ABMWebForms.csproj", "{CFD1FE91-86E7-4DE8-AD8C-1D505EC0D34F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{224A5CD1-BBA5-4D9E-B751-6E8F1CB1491C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{224A5CD1-BBA5-4D9E-B751-6E8F1CB1491C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{224A5CD1-BBA5-4D9E-B751-6E8F1CB1491C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFD1FE91-86E7-4DE8-AD8C-1D505EC0D34F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFD1FE91-86E7-4DE8-AD8C-1D505EC0D34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFD1FE91-86E7-4DE8-AD8C-1D505EC0D34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFD1FE91-86E7-4DE8-AD8C-1D505EC0D34F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
