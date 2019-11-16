@@ -1,7 +1,54 @@
-﻿
+﻿@model ABMWebMVC.Models.ViewModels.PersonaViewModel
 @{
     ViewBag.Title = "Nuevo";
 }
 
-<h2>Nuevo</h2>
+<h2 style="text-align:center">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Persona", FormMethod.Post))
+{
+    <div class="row" style="text-align:center">
+        <div class="col-md-12" align="center">
+
+            <div>
+                @Html.LabelFor(p => p.DNI)
+                @Html.TextBoxFor(p => p.DNI, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.DNI, null, new { @class = "danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(p => p.Nombre)
+                @Html.TextBoxFor(p => p.Nombre, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(p => p.Apellido)
+                @Html.TextBoxFor(p => p.Apellido, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.Apellido, null, new { @class = "danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(p => p.Mail)
+                @Html.TextBoxFor(p => p.Mail, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.Mail, null, new { @class = "danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(p => p.FechaNacimiento) <br />
+                @Html.EditorFor(p => p.FechaNacimiento, "", new { @class = "form-control" })
+            </div>
+
+            <hr />
+
+            <div style="text-align:center">
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+
+        </div>
+
+
+    </div>
+
+}
 

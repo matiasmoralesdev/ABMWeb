@@ -23,16 +23,18 @@ namespace ABMWebMVC.Controllers
 
             dbwebEntities db = new dbwebEntities();
 
-            var listaPersonas = (from persona in db.Persona
-                                 select new PersonaLViewModel
-                                 {
-                                     DNI = persona.DNI,
-                                     Nombre = persona.Nombre,
-                                     Apellido = persona.Apellido,
-                                     Mail = persona.Mail,
-                                     FechaNacimiento = persona.FechaNacimiento
+            List<PersonaLViewModel> listaPersonas;
 
-                                 }).ToList();
+            listaPersonas = (from persona in db.Persona
+                             select new PersonaLViewModel
+                             {
+                                 DNI = persona.DNI,
+                                 Nombre = persona.Nombre,
+                                 Apellido = persona.Apellido,
+                                 Mail = persona.Mail,
+                                 FechaNacimiento = persona.FechaNacimiento
+
+                             }).ToList();
 
 
             return View(listaPersonas);
@@ -42,6 +44,38 @@ namespace ABMWebMVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Nuevo(PersonaViewModel pModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (dbwebEntities db = new dbwebEntities())
+                    {
+                        var tablaPersona = new Persona();
+                        tablaPersona.DNI = pModel.DNI;
+                        tablaPersona.Nombre = pModel.Nombre;
+                        tablaPersona.Apellido = pModel.Apellido;
+                        tablaPersona.Mail = pModel.Mail;
+                        tablaPersona.FechaNacimiento = pModel.FechaNacimiento;
+
+                        db.Persona.Add(tablaPersona);
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Persona/");
+                }
+
+                return View(pModel);
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
     }
 }

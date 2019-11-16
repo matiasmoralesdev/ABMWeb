@@ -158,6 +158,7 @@
       <DependentUpon>dbviewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\PersonaLViewModel.cs" />
+    <Compile Include="Models\ViewModels\PersonaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
