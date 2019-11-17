@@ -21,21 +21,22 @@ namespace ABMWebMVC.Controllers
 
             // Forma de Tutorial
 
-            dbwebEntities db = new dbwebEntities();
+
 
             List<PersonaLViewModel> listaPersonas;
+            using (dbwebEntities db = new dbwebEntities())
+            {
+                listaPersonas = (from persona in db.Persona
+                                 select new PersonaLViewModel
+                                 {
+                                     DNI = persona.DNI,
+                                     Nombre = persona.Nombre,
+                                     Apellido = persona.Apellido,
+                                     Mail = persona.Mail,
+                                     FechaNacimiento = persona.FechaNacimiento
 
-            listaPersonas = (from persona in db.Persona
-                             select new PersonaLViewModel
-                             {
-                                 DNI = persona.DNI,
-                                 Nombre = persona.Nombre,
-                                 Apellido = persona.Apellido,
-                                 Mail = persona.Mail,
-                                 FechaNacimiento = persona.FechaNacimiento
-
-                             }).ToList();
-
+                                 }).ToList();
+            }
 
             return View(listaPersonas);
         }
@@ -75,6 +76,71 @@ namespace ABMWebMVC.Controllers
                 throw new Exception(e.Message);
             }
         }
+
+        public ActionResult Editar(int id)
+        {
+            PersonaViewModel modelo = new PersonaViewModel();
+            using (dbwebEntities db = new dbwebEntities())
+            {
+                var tablaPersona = db.Persona.Find(id);
+                modelo.Nombre = tablaPersona.Nombre;
+                modelo.Apellido = tablaPersona.Apellido;
+                modelo.Mail = tablaPersona.Mail;
+                modelo.FechaNacimiento = tablaPersona.FechaNacimiento;
+                modelo.DNI = tablaPersona.DNI;
+
+
+            }
+            return View(modelo);
+        }
+
+
+        [HttpPost]
+        public ActionResult Editar(PersonaViewModel pModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (dbwebEntities db = new dbwebEntities())
+                    {
+                        var tablaPersona = db.Persona.Find(pModel.DNI);
+                        tablaPersona.DNI = pModel.DNI;
+                        tablaPersona.Nombre = pModel.Nombre;
+                        tablaPersona.Apellido = pModel.Apellido;
+                        tablaPersona.Mail = pModel.Mail;
+                        tablaPersona.FechaNacimiento = pModel.FechaNacimiento;
+
+                        db.Entry(tablaPersona).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Persona/");
+                }
+
+                return View(pModel);
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
+
+
+        [HttpGet]
+        public ActionResult Eliminar(int id)
+        {
+            using (dbwebEntities db = new dbwebEntities())
+            {
+                var tablaPersona = db.Persona.Find(id);
+                db.Persona.Remove(tablaPersona);
+                db.SaveChanges();
+            }
+            return Redirect("~/Persona/");
+        }
+
 
 
     }

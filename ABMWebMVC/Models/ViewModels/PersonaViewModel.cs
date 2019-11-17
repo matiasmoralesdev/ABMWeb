@@ -18,7 +18,7 @@ namespace ABMWebMVC.Models.ViewModels
         [Display(Name = "Apellido")]
         [StringLength(20)]
         public string Apellido { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Mail")]
         [StringLength(50)]
         [EmailAddress]
@@ -26,6 +26,7 @@ namespace ABMWebMVC.Models.ViewModels
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha de Nacimiento")]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode =true)]
         public DateTime FechaNacimiento { get; set; }
     }
 

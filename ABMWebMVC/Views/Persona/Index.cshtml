@@ -3,7 +3,7 @@
     ViewBag.Title = "Persona";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 style="text-align:center">@ViewBag.Title</h2>
 
 <div class="row" style="text-align:center;padding:20px">
 
@@ -22,6 +22,8 @@
                 <th>Apellido</th>
                 <th>Mail</th>
                 <th>Fecha De Nacimiento</th>
+                <th></th>
+
             </tr>
 
             @* Recorre la lista de personas y pone cada valor en la columna correspondiente *@
@@ -29,13 +31,16 @@
             @foreach (var persona in Model)
             {
                 <tr>
-                    <th>@persona.DNI</th>
-                    <th>@persona.Nombre</th>
-                    <th>@persona.Apellido</th>
-                    <th>@persona.Mail</th>
-                    <th>@persona.FechaNacimiento</th>
-
-
+                    <td>@persona.DNI</td>
+                    <td>@persona.Nombre</td>
+                    <td>@persona.Apellido</td>
+                    <td>@persona.Mail</td>
+                    <td >@persona.FechaNacimiento.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-default" href="~/Persona/Editar/@persona.DNI">Editar</a>
+                        <a class="btn btn-danger"  href="~/Persona/Eliminar/@persona.DNI">Eliminar</a>
+                    </td>
+                    
 
 
                 </tr>
